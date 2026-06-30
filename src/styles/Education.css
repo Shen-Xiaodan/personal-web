@@ -1,0 +1,244 @@
+/* Education 教育经历样式 */
+.education {
+  position: relative;
+  padding: 5.5rem 1.5rem;
+  background: transparent;
+}
+
+.education::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
+}
+
+.education-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-header {
+  animation: fadeInDown 0.8s ease;
+}
+
+/* 时间线 */
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  background: var(--primary-pink);
+  top: 0;
+}
+
+.timeline-item {
+  margin-bottom: 3rem;
+  animation: slideInFromLeft 0.8s ease;
+}
+
+.timeline-item:nth-child(even) {
+  animation: slideInFromRight 0.8s ease;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.marker-circle {
+  width: 14px;
+  height: 14px;
+  background: var(--primary-pink);
+  border-radius: 50%;
+  border: none;
+  transition: var(--transition);
+  box-shadow: 0 0 0 4px rgba(255, 107, 155, 0.16);
+}
+
+.timeline-item:hover .marker-circle {
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 0 6px rgba(255, 107, 155, 0.16);
+}
+
+.timeline-line {
+  width: 3px;
+  height: 100%;
+  background: var(--primary-pink);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 16px;
+}
+
+/* 内容卡片 */
+.timeline-content {
+  width: calc(50% - 30px);
+  background: linear-gradient(180deg, rgba(255,107,155,0.03), rgba(255,244,214,0.02));
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  padding: 1.2rem;
+  transition: var(--transition);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255, 105, 180, 0.1), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.timeline-item:hover .timeline-content {
+  background: linear-gradient(180deg, rgba(255,107,155,0.06), rgba(255,244,214,0.03));
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  transform: translateY(-6px);
+}
+
+.timeline-item:hover .timeline-content::before {
+  opacity: 1;
+}
+
+/* 卡片内容 */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  z-index: 1;
+  position: relative;
+}
+
+.school-header {
+  width: 100%;
+}
+
+.school-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.school-name:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.period {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  background: rgba(255, 105, 180, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.card-expanded {
+  animation: fadeInUp 0.3s ease;
+}
+
+.degree {
+  font-size: 1rem;
+  color: var(--primary-pink);
+  font-weight: 600;
+  margin: 0.8rem 0 0.4rem 0;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/* 高亮徽章 */
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.highlight-badge {
+  padding: 0.4rem 0.9rem;
+  background: linear-gradient(135deg, rgba(255,215,122,0.08), rgba(255,107,155,0.06));
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  transition: var(--transition);
+}
+
+.highlight-badge:hover {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.4), rgba(255, 105, 180, 0.4));
+  transform: scale(1.05);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .education {
+    padding: 4rem 1.5rem;
+  }
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-marker {
+    left: 10px;
+    transform: translateX(-50%);
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    animation: slideInFromLeft 0.8s ease;
+  }
+
+  .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content {
+    width: calc(100% - 30px);
+    margin-left: 30px;
+    margin-right: 0;
+  }
+
+  .card-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .school-name {
+    font-size: 1.1rem;
+  }
+
+  .period {
+    font-size: 0.8rem;
+  }
+}

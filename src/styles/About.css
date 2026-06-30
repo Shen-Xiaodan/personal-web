@@ -1,0 +1,210 @@
+/* About 关于我样式 */
+.about {
+  position: relative;
+  padding: 5.5rem 1.5rem;
+  background: transparent;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-header {
+  animation: fadeInDown 0.8s ease;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-top: 3rem;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+/* 关于我图片 */
+.about-image {
+  display: flex;
+  justify-content: center;
+}
+
+.image-frame {
+  width: 300px;
+  height: 300px;
+  border-radius: 16px;
+  background: rgba(255, 244, 214, 0.85);
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow: var(--soft-shadow);
+}
+
+.image-frame:hover {
+  transform: scale(1.03);
+  border-color: rgba(255,107,155,0.25);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.image-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* 关于文本 */
+.about-text {
+  animation: slideInFromRight 0.8s ease;
+}
+
+.intro-text {
+  font-size: 1.15rem;
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* 技能标签 */
+.skills {
+  margin-bottom: 2rem;
+}
+
+.skills h3 {
+  font-size: 1rem;
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, rgba(255,107,155,0.06), rgba(255,192,214,0.04));
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  transition: var(--transition);
+  cursor: default;
+  user-select: none;
+}
+
+.tag:hover {
+  background: linear-gradient(135deg, rgba(255,107,155,0.08), rgba(255,192,214,0.06));
+  border-color: rgba(255,107,155,0.18);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* 展开内容 */
+.expanded-content {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  animation: fadeInUp 0.5s ease;
+}
+
+.expanded-content h4 {
+  color: var(--primary-pink);
+  margin-bottom: 0.5rem;
+}
+
+.expanded-content ul {
+  text-align: left;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  color: var(--text-muted);
+}
+
+.expanded-content p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.resume-links {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(255, 244, 214, 0.7);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.resume-links p {
+  margin-bottom: 0.5rem;
+  color: var(--primary-pink);
+  font-weight: 600;
+}
+
+.resume-links a {
+  color: var(--primary-pink);
+  text-decoration: none;
+  margin-right: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .about {
+    padding: 4rem 1.5rem;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .image-frame {
+    width: 250px;
+    height: 250px;
+  }
+
+  .skill-tags {
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
