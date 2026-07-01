@@ -75,7 +75,7 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/personal-web">
       <audio ref={audioRef} src={bgmFile} preload="auto" />
       <Navigation
         language={language}
