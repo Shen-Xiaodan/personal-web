@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom'
 import clickEffect from '../click-effect.mp3';
 import '../styles/Navigation.css';
@@ -8,7 +8,7 @@ const navigationText = {
     about: '关于我',
     education: '教育',
     experience: '工作',
-    gallery: '足迹',
+    footprints: '足迹',
     language: 'English',
     languageLabel: '切换到英文',
     musicOn: '播放中',
@@ -20,7 +20,7 @@ const navigationText = {
     about: 'About',
     education: 'Education',
     experience: 'Experience',
-    gallery: 'Gallery',
+    footprints: 'Footprints',
     language: '中文',
     languageLabel: 'Switch to Chinese',
     musicOn: 'Playing',
@@ -57,7 +57,7 @@ export default function Navigation({ language, onToggleLanguage, musicStatus, on
       <div className="nav-container">
         <div className="nav-logo">
           <span className="logo-emoji">🐙</span>
-          <span className="logo-text">沈小丹</span>
+          <span className="logo-text">沈小丹 (Shen Xiaodan)</span>
         </div>
 
         <button
@@ -101,11 +101,11 @@ export default function Navigation({ language, onToggleLanguage, musicStatus, on
           </li>
           <li className="nav-item">
             <Link
-              to="/gallery"
+              to="/footprints"
               className="nav-link"
               onClick={() => handleNavAction(() => setIsMobileMenuOpen(false))}
             >
-              {text.gallery}
+              {text.footprints}
             </Link>
           </li>
           <li className="nav-item nav-item-language">

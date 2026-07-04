@@ -2,7 +2,9 @@ import Navigation from './components/Navigation'
 import About from './components/About'
 import Education from './components/Education'
 import Experience from './components/Experience'
-import Gallery from './components/Gallery'
+import Footprints from './components/Footprints'
+import Italy from './components/Italy'
+import Netherlands from './components/Netherlands'
 import { useEffect, useRef, useState } from 'react'
 import bgmFile from './01 Stardew Valley Overture.mp3'
 import './styles/globals.css'
@@ -10,7 +12,9 @@ import './styles/Navigation.css'
 import './styles/About.css'
 import './styles/Education.css'
 import './styles/Experience.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './styles/Footprints.css'
+import './styles/Italy.css'
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 
 function App() {
   const [language, setLanguage] = useState('zh')
@@ -31,9 +35,8 @@ function App() {
     try {
       audio.loop = true
       await audio.play()
-      setMusicStatus('playing')
     } catch {
-      setMusicStatus('stopped')
+      audio.pause()
     }
   }
 
@@ -46,7 +49,6 @@ function App() {
 
     audio.pause()
     audio.currentTime = 0
-    setMusicStatus('stopped')
   }
 
   const toggleMusic = () => {
@@ -59,6 +61,22 @@ function App() {
   }
 
   useEffect(() => {
+    const audio = audioRef.current
+
+    if (!audio) {
+      return undefined
+    }
+
+    const handlePlay = () => {
+      setMusicStatus('playing')
+    }
+
+    const handlePause = () => {
+      setMusicStatus('stopped')
+    }
+
+    audio.addEventListener('play', handlePlay)
+    audio.addEventListener('pause', handlePause)
     playMusic()
 
     const startOnFirstInteraction = () => {
@@ -69,6 +87,8 @@ function App() {
     document.addEventListener('keydown', startOnFirstInteraction, { once: true })
 
     return () => {
+      audio.removeEventListener('play', handlePlay)
+      audio.removeEventListener('pause', handlePause)
       document.removeEventListener('pointerdown', startOnFirstInteraction)
       document.removeEventListener('keydown', startOnFirstInteraction)
     }
@@ -89,7 +109,14 @@ function App() {
           <Route path="/about" element={<About language={language} />} />
           <Route path="/education" element={<Education language={language} />} />
           <Route path="/experience" element={<Experience language={language} />} />
-          <Route path="/gallery" element={<Gallery language={language} />} />
+          <Route path="/footprints" element={<Footprints language={language} />}>
+            <Route index element={<Navigate to="italy" replace />} />
+            <Route path="italy" element={<Italy language={language} />} />
+            <Route path="netherland" element={<Netherlands language={language} />} />
+          </Route>
+          <Route path="/italy" element={<Navigate to="/footprints/italy" replace />} />
+          <Route path="/netherland" element={<Navigate to="/footprints/netherland" replace />} />
+          <Route path="/gallery" element={<Navigate to="/footprints" replace />} />
         </Routes>
       </main>
     </BrowserRouter>
