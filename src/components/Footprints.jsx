@@ -6,12 +6,14 @@ const footprintsText = {
     subtitle: '选择一个国家标签，查看对应的旅行照片。',
     italy: '意大利',
     netherland: '荷兰',
+    warsaw: '华沙',
   },
   en: {
     title: 'My Footprints',
     subtitle: 'Choose a country tab to browse the matching travel photos.',
     italy: 'Italy',
     netherland: 'Netherlands',
+    warsaw: 'Warsaw',
   },
 }
 
@@ -43,6 +45,12 @@ export default function Footprints({ language }) {
             className={({ isActive }) => `footprints-tab ${isActive ? 'active' : ''}`}
           >
             🇳🇱 {text.netherland}
+          </NavLink>
+          <NavLink
+            to="warsaw"
+            className={({ isActive }) => `footprints-tab ${isActive ? 'active' : ''}`}
+          >
+            🇵🇱 {text.warsaw}
           </NavLink>
         </div>
 

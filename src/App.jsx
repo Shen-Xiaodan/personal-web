@@ -5,6 +5,7 @@ import Experience from './components/Experience'
 import Footprints from './components/Footprints'
 import Italy from './components/Italy'
 import Netherlands from './components/Netherlands'
+import Warsaw from './components/Warsaw'
 import { useEffect, useRef, useState } from 'react'
 import bgmFile from './01 Stardew Valley Overture.mp3'
 import './styles/globals.css'
@@ -113,9 +114,11 @@ function App() {
             <Route index element={<Navigate to="italy" replace />} />
             <Route path="italy" element={<Italy language={language} />} />
             <Route path="netherland" element={<Netherlands language={language} />} />
+            <Route path="warsaw" element={<Warsaw language={language} />} />
           </Route>
           <Route path="/italy" element={<Navigate to="/footprints/italy" replace />} />
           <Route path="/netherland" element={<Navigate to="/footprints/netherland" replace />} />
+          <Route path="/warsaw" element={<Navigate to="/footprints/warsaw" replace />} />
           <Route path="/gallery" element={<Navigate to="/footprints" replace />} />
         </Routes>
       </main>
