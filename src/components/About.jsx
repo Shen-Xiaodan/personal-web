@@ -1,116 +1,19 @@
-import React from 'react';
-import profilePhoto from '../photos/profile/profile.jpg';
-import englishResume from '../Shen_Xiaodan-CV.pdf';
-import chineseResume from '../沈小丹——简历.pdf';
-import '../styles/About.css';
+import profilePhoto from '../photos/profile/profile.jpg'
+import englishResume from '../Shen_Xiaodan-CV.pdf'
+import chineseResume from '../沈小丹——简历.pdf'
 
-const aboutText = {
-  zh: {
-    title: '关于我',
-    intro: '你好！我是香港中文大学（深圳）计算机科学与技术专业大四本科生。',
-    description: '我对软件开发、机器学习和算法设计充满热情。',
-    skills: '主要技能',
-    interestTitle: '我的兴趣',
-    interests: [
-      '软件开发 - 创造有意思的软件和网站',
-      '机器学习 - 将基于学习的方法应用于实际问题',
-      '算法设计 - 开发高效的计算问题解决方案',
-    ],
-    currentTitle: '目前在做什么',
-    current: ['持续学习', '探索研究和行业机会'],
-    resumeTitle: '我的简历',
-    resumeEnglish: 'CV in English',
-    resumeChinese: '简历（中文版）',
-    skillTags: ['Java', 'Python', '机器学习', 'JavaScript/React'],
-  },
-  en: {
-    title: 'About Me',
-    intro: 'Hello! I am a senior undergraduate student majoring in Computer Science and Technology at The Chinese University of Hong Kong, Shenzhen.',
-    description: 'I am passionate about software development, machine learning, and algorithm design.',
-    skills: 'Key Skills',
-    interestTitle: 'My Interests',
-    interests: [
-      'Software Development - Building interesting software and websites',
-      'Machine Learning - Applying learning-based methods to real-world problems',
-      'Algorithm Design - Developing efficient solutions to computational problems',
-    ],
-    currentTitle: 'What I Am Doing Now',
-    current: ['Continuing to learn', 'Exploring research and industry opportunities'],
-    resumeTitle: 'My Resume',
-    resumeEnglish: 'English CV',
-    resumeChinese: 'Chinese Resume',
-    skillTags: ['Java', 'Python', 'Machine Learning', 'JavaScript/React'],
-  },
-};
-
+const copy = {
+  zh: { issue: 'PROFILE / ISSUE 01', title: '关于我', intro: '一个喜欢旅行和摄影的计算机学生', description: '平时喜欢写代码，也喜欢带着相机到处走走。目前主要使用 Java、Python 和 JavaScript，学习方向集中在软件开发、机器学习与 AI 应用。', skills: '主要技能', interestsTitle: '我的兴趣', interests: ['软件开发 — 喜欢把想法做成真正可以使用的软件和网站', 'AI Agent — 正在学习与实践，也在尝试把它应用到实际项目中'], currentTitle: '最近在做什么', current: ['继续学习计算机科学，也不断尝试新的技术', '旅行、拍照，并记录途中遇到的有趣瞬间'], resume: '我的简历', en: 'CV in English', zh: '简历（中文版）' },
+  en: { issue: 'PROFILE / ISSUE 01', title: 'About Me', intro: 'I am a computer science student who loves travelling and photography.', description: 'I enjoy writing code, but I also like heading out with a camera. I mainly work with Java, Python and JavaScript, and I am currently exploring software development, machine learning and practical AI applications.', skills: 'Key Skills', interestsTitle: 'My Interests', interests: ['Software Development — Turning ideas into software and websites people can actually use', 'AI Agents — Learning by building and exploring how they can work in real projects'], currentTitle: 'What I Am Doing Lately', current: ['Learning more about computer science and experimenting with new technology', 'Travelling, taking photographs and collecting interesting moments along the way'], resume: 'My Résumé', en: 'English CV', zh: 'Chinese Résumé' },
+}
 export default function About({ language }) {
-  const text = aboutText[language] || aboutText.zh;
-
-  return (
-    <section className="about" id="about">
-      <div className="about-container">
-        <div className="about-header">
-          <h2 className="section-title">
-            <span className="title-icon">✨</span>
-            {text.title}
-            <span className="title-icon">✨</span>
-          </h2>
-          {/* <div className="title-underline" /> */}
-        </div>
-
-        <div className="about-content">
-          <div className="about-image">
-            <div className="image-frame">
-              <img className="profile-photo" src={profilePhoto} alt="Profile" />
-            </div>
-          </div>
-
-          <div className="about-text">
-            <p className="intro-text">
-              {text.intro}
-            </p>
-
-            <p className="description">
-              {text.description}
-            </p>
-
-            <div className="skills">
-              <h3>{text.skills}</h3>
-              <div className="skill-tags">
-                {text.skillTags.map((tag) => (
-                  <label key={tag} className="tag">{tag}</label>
-                ))}
-              </div>
-            </div>
-
-            <div className="expanded-content">
-              <h4>{text.interestTitle}</h4>
-              <ul>
-                {text.interests.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <h4>{text.currentTitle}</h4>
-              <ul>
-                {text.current.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <div className="resume-links">
-                <p>{text.resumeTitle}</p>
-                <a href={englishResume} target="_blank" rel="noopener noreferrer">
-                  {text.resumeEnglish}
-                </a>
-                <a href={chineseResume} target="_blank" rel="noopener noreferrer">
-                  {text.resumeChinese}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  const text = copy[language]
+  return <section className="about"><div className="about-container">
+    <header className="page-heading"><h1>{text.title}</h1></header>
+    <div className="about-content"><div className="about-image"><div className="image-frame"><img className="profile-photo" src={profilePhoto} alt="Shen Xiaodan" /><span>PORTRAIT / 01</span></div></div>
+      <article className="about-text"><p className="intro-text">{text.intro}</p><p className="description">{text.description}</p>
+        <div className="skills"><h3>{text.skills}</h3><div className="skill-tags">{['JAVA', 'PYTHON', 'MACHINE LEARNING', 'JAVASCRIPT / REACT'].map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div></div>
+        <div className="expanded-content"><h4>{text.interestsTitle}</h4><ul>{text.interests.map((item) => <li key={item}>{item}</li>)}</ul><h4>{text.currentTitle}</h4><ul>{text.current.map((item) => <li key={item}>{item}</li>)}</ul><div className="resume-links"><p>{text.resume}</p><a href={englishResume} target="_blank" rel="noreferrer">{text.en} ↗</a><a href={chineseResume} target="_blank" rel="noreferrer">{text.zh} ↗</a></div></div>
+      </article></div>
+  </div></section>
 }
