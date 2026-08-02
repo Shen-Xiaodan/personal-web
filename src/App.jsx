@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import About from './components/About'
@@ -18,6 +18,32 @@ export default function App() {
   const [language, setLanguage] = useState('zh')
   const [musicStatus, setMusicStatus] = useState('stopped')
   const audioRef = useRef(null)
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return undefined
+
+    audio.loop = true
+
+    const handlePlay = () => setMusicStatus('playing')
+    const handlePause = () => setMusicStatus('stopped')
+    const playMusic = () => audio.play().catch(() => {})
+
+    audio.addEventListener('play', handlePlay)
+    audio.addEventListener('pause', handlePause)
+    playMusic()
+
+    document.addEventListener('click', playMusic, { once: true })
+    document.addEventListener('keydown', playMusic, { once: true })
+
+    return () => {
+      audio.removeEventListener('play', handlePlay)
+      audio.removeEventListener('pause', handlePause)
+      document.removeEventListener('click', playMusic)
+      document.removeEventListener('keydown', playMusic)
+    }
+  }, [])
+
   const toggleMusic = async () => {
     const audio = audioRef.current
     if (!audio) return
@@ -27,7 +53,7 @@ export default function App() {
   }
   return (
     <BrowserRouter basename="/personal-web">
-      <audio ref={audioRef} src={bgmFile} preload="metadata" />
+      <audio ref={audioRef} src={bgmFile} preload="auto" />
       <Navigation language={language} onToggleLanguage={() => setLanguage((v) => v === 'zh' ? 'en' : 'zh')} musicStatus={musicStatus} onToggleMusic={toggleMusic} />
       <main><Routes>
         <Route path="/" element={<Navigate to="/about" replace />} />
